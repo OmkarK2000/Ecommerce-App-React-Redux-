@@ -1,21 +1,17 @@
 import { useSelector, useDispatch } from "react-redux"
 import { handleQuantity, removeFromCart } from "../functions/cartSlice"
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
+import { getCartTotal } from "../functions/cartSlice";
 
 const Cart = () => {
-  const [finalValue, setFinalValue] = useState(null)
-  const { cartProducts } = useSelector((state) => state.cart)
-  console.log(cartProducts)
-  const dispatch = useDispatch()  
+  
+  const {cartProducts, totalPrice} = useSelector((state) => state.cart)
+
+  const dispatch = useDispatch()
 
   useEffect(()=>{
-    const cartTotal= ()=>{ cartProducts.reduce((accumulator ,item) => {
-      console.log(accumulator, item.totalPrice)
-      return accumulator += item.totalPrice;
-    }, 0)
-    }
-    setFinalValue(cartTotal())
-  },[cartProducts, dispatch])
+    dispatch(getCartTotal())
+  },[cartProducts])
   
   if(cartProducts.length <= 0){
     return <h1 className="text-center text-2xl font-bold">Cart is empty</h1>
@@ -73,7 +69,7 @@ const Cart = () => {
         <div>
           <h2 className="text-2xl text-end font-normal ">CART TOTALS</h2>
           <hr className="mt-2 w-60 " />
-          <div className="flex justify-between my-10"><p>Total</p><p>$ {finalValue}</p></div>
+          <div className="flex justify-between my-10"><p>Total</p><p>$ {totalPrice}</p></div>
           <button className="bg-[#717fe0] text-white py-4 px-8 rounded">PROCEED TO CHECKOUT</button>
         </div>
       </div>

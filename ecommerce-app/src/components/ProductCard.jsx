@@ -19,11 +19,11 @@ const ProductCard = ({ item, isFavourite }) => {
 
     return (
         <div className="w-[270px] mt-8 border rounded-3xl">
-            <div className="w-[270px] h-[270px]">
-                <img src={images[0]} alt="img" className="h-full w-full object-contain" onClick={()=> navigate(`/product/${id}`)} />
+            <div className="w-[270px] h-[270px] hover:cursor-pointer" onClick={()=> navigate(`/product/${id}`)}>
+                <img src={images[0]} alt="img" className="h-full w-full object-contain"  />
             </div>
             <div className="mt-4 mx-3 flex justify-between">
-                <span>
+                <span onClick={()=> navigate(`/product/${id}`)} className="hover:cursor-pointer">
                     <h6 className="text-[#999] text-sm">{title}</h6>
                     <p className="text-[#666] mt-2">${price}</p>
                 </span>
@@ -31,7 +31,7 @@ const ProductCard = ({ item, isFavourite }) => {
                 <button className="" onClick={() => isFavourite === "yes" ? dispatch(removeFromFavourite(id)) : dispatch(addToFavourite(item))}>{isFavourite === "yes" ?  <IoMdHeart /> : <IoMdHeartEmpty />}</button>
                 </span>
             </div>
-            <button className="px-10 my-4 w-full py-2 bg-[#717fe0] text-white font-normal rounded-3xl text-sm hover:bg-white hover:text-[#717fe0]" onClick={() => handleAddToCart(item)}>Add To Cart</button>
+            <button className="px-10 my-4 w-full py-2 bg-[#717fe0] text-white font-normal rounded-3xl text-sm hover:bg-black active:bg-white active:text-black " onClick={() => handleAddToCart(item)}>Add To Cart</button>
             
         </div>
     )

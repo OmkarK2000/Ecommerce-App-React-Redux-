@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  favouriteCart : []
+  favouriteCart : [],
+  totalLikeCount : 0
 }
 
 export const favouriteSlice = createSlice({
@@ -25,11 +26,15 @@ export const favouriteSlice = createSlice({
       state.favouriteCart = state.favouriteCart.filter((item)=>(
         item.id !== action.payload
       ))
+    },
+    getTotalCountOfFovourite : (state)=>{
+      // state.totalLikeCount = state.favouriteCart.length 
+      state.totalLikeCount = console.log(favouriteSlice.length)
     }
     
   }
 })
 
-export const {addToFavourite, removeFromFavourite} = favouriteSlice.actions
+export const {addToFavourite, removeFromFavourite, getTotalCountOfFovourite} = favouriteSlice.actions
 
 export default favouriteSlice.reducer

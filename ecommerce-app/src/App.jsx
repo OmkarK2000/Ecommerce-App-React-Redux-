@@ -10,6 +10,7 @@ import Cart from "./pages/Cart"
 import Search from "./pages/Search"
 import LikePage from "./pages/LikePage"
 import Footer from "./components/Footer"
+import SingleProduct from "./pages/SingleProduct"
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/blog" element={<Blog/>} />
+        {/* <Route path="/blog" element={<Blog/>} /> */}
         <Route path="/contact" element={<Contact/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/shop" element={<Shop/>} />
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/search" element={<Search/>} />
         <Route path="/likePage" element={<LikePage/>} />
+        <Route path="/product/:id" element={<SingleProduct/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>
